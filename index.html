@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Light Up the Universe &mdash; The Lasser Family Collection of Hanukkiot</title>
+<meta name="description" content="The Lasser Family Collection of Hanukkiot: seventy-three menorahs, seventy-three stories, fourth edition.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header" id="site-header">
+  <a class="brand" href="#top">
+    <span class="brand-flame" aria-hidden="true">
+      <svg viewBox="0 0 20 32" width="12" height="19"><path class="flame-path" d="M10 0C10 0 3 9 3 17a7 7 0 0 0 14 0C17 9 10 0 10 0Z"/></svg>
+    </span>
+    <span class="brand-word">The Lasser Collection</span>
+  </a>
+  <button class="contents-toggle" id="contentsToggle" aria-expanded="false" aria-controls="contentsPanel">
+    <span>Contents</span>
+  </button>
+</header>
+
+<nav class="contents-panel" id="contentsPanel" aria-label="Table of contents" hidden>
+  <ol class="contents-list" id="contentsList"></ol>
+</nav>
+<div class="contents-scrim" id="contentsScrim" hidden></div>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="edition-badge">Fourth&nbsp;Edition</p>
+      <h1 class="hero-title">Light Up the Universe</h1>
+      <p class="hero-sub">The Lasser Family Collection of Hanukkiot</p>
+      <a class="scroll-cue" href="#foreword" aria-label="Scroll to Foreword">
+        <span></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="front-matter" id="foreword">
+    <div class="reading-column">
+      <p class="eyebrow">Foreword</p>
+      <p class="dropcap" id="forewordText"></p>
+    </div>
+  </section>
+
+  <section class="front-matter front-matter--intro" id="introduction">
+    <div class="reading-column">
+      <p class="eyebrow">Introduction</p>
+      <div id="introductionText"></div>
+    </div>
+  </section>
+
+  <section class="toc-section" id="toc">
+    <div class="reading-column reading-column--wide">
+      <p class="eyebrow">Contents</p>
+      <ol class="toc-list" id="tocList"></ol>
+    </div>
+  </section>
+
+  <div id="chapters"></div>
+
+  <footer class="site-footer">
+    <p class="footer-line">Chag Sameach.</p>
+    <p class="footer-colophon">Photographed by Jim. Seventy-three hanukkiot, one story at a time.</p>
+  </footer>
+
+</main>
+
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox-scrim" id="lightboxScrim"></div>
+  <div class="lightbox-frame" role="dialog" aria-modal="true" aria-labelledby="lbTitle">
+    <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous piece">&#8249;</button>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next piece">&#8250;</button>
+    <div class="lb-image-wrap">
+      <img id="lbImage" alt="">
+    </div>
+    <div class="lb-card">
+      <p class="lb-chapter" id="lbChapter"></p>
+      <p class="lb-number" id="lbNumber"></p>
+      <h2 class="lb-title" id="lbTitle"></h2>
+      <div class="lb-story" id="lbStory"></div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
