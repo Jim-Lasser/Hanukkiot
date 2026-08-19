@@ -134,8 +134,30 @@
     document.getElementById("lbPrev").addEventListener("click", function () { step(-1); });
     document.getElementById("lbNext").addEventListener("click", function () { step(1); });
 
+    var lbImage = document.getElementById("lbImage");
+    lbImage.addEventListener("click", openFullscreen);
+    lbImage.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openFullscreen(); }
+    });
+    document.getElementById("lbExpand").addEventListener("click", openFullscreen);
+
+    document.getElementById("fsClose").addEventListener("click", closeFullscreen);
+    document.getElementById("fullscreenView").addEventListener("click", function (e) {
+      if (e.target.id === "fullscreenView") closeFullscreen();
+    });
+    document.getElementById("fsImage").addEventListener("click", closeFullscreen);
+    document.getElementById("fsPrev").addEventListener("click", function (e) { e.stopPropagation(); step(-1); });
+    document.getElementById("fsNext").addEventListener("click", function (e) { e.stopPropagation(); step(1); });
+
     document.addEventListener("keydown", function (e) {
+      var fs = document.getElementById("fullscreenView");
       var lb = document.getElementById("lightbox");
+      if (!fs.hasAttribute("hidden")) {
+        if (e.key === "Escape") closeFullscreen();
+        if (e.key === "ArrowLeft") step(-1);
+        if (e.key === "ArrowRight") step(1);
+        return;
+      }
       if (lb.hasAttribute("hidden")) return;
       if (e.key === "Escape") closeLightbox();
       if (e.key === "ArrowLeft") step(-1);
@@ -156,10 +178,22 @@
     document.body.style.overflow = "";
   }
 
+  function openFullscreen() {
+    renderFullscreen();
+    document.getElementById("fullscreenView").removeAttribute("hidden");
+  }
+
+  function closeFullscreen() {
+    document.getElementById("fullscreenView").setAttribute("hidden", "");
+  }
+
   function step(delta) {
     var n = state.flatItems.length;
     state.currentIndex = (state.currentIndex + delta + n) % n;
     renderLightbox();
+    if (!document.getElementById("fullscreenView").hasAttribute("hidden")) {
+      renderFullscreen();
+    }
   }
 
   function renderLightbox() {
@@ -173,6 +207,14 @@
     document.getElementById("lbTitle").textContent = it.title;
     document.getElementById("lbStory").innerHTML = paragraphs(it.caption);
     document.querySelector(".lb-card").scrollTop = 0;
+  }
+
+  function renderFullscreen() {
+    var it = state.flatItems[state.currentIndex];
+    if (!it) return;
+    var img = document.getElementById("fsImage");
+    img.src = "images/full/" + it.number + ".jpg";
+    img.alt = it.title;
   }
 
   /* ---------------- Contents panel (mobile/desktop drawer) ---------------- */

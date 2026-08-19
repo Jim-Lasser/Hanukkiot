@@ -82,7 +82,15 @@
     <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous piece">&#8249;</button>
     <button class="lb-nav lb-next" id="lbNext" aria-label="Next piece">&#8250;</button>
     <div class="lb-image-wrap">
-      <img id="lbImage" alt="">
+      <img id="lbImage" alt="" tabindex="0">
+      <button class="lb-expand" id="lbExpand" aria-label="View full screen">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
+          <path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
+          <path d="M3 16v3a2 2 0 0 0 2 2h3"></path>
+          <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
+        </svg>
+      </button>
     </div>
     <div class="lb-card">
       <p class="lb-chapter" id="lbChapter"></p>
@@ -91,6 +99,13 @@
       <div class="lb-story" id="lbStory"></div>
     </div>
   </div>
+</div>
+
+<div class="fullscreen-view" id="fullscreenView" hidden>
+  <button class="fs-close" id="fsClose" aria-label="Exit full screen">&times;</button>
+  <button class="lb-nav lb-prev" id="fsPrev" aria-label="Previous piece">&#8249;</button>
+  <button class="lb-nav lb-next" id="fsNext" aria-label="Next piece">&#8250;</button>
+  <img id="fsImage" alt="">
 </div>
 
 <script src="script.js"></script>

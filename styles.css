@@ -553,6 +553,7 @@ img { display: block; max-width: 100%; }
 }
 
 .lb-image-wrap {
+  position: relative;
   background: #0a0908;
   display: flex;
   align-items: center;
@@ -565,6 +566,30 @@ img { display: block; max-width: 100%; }
   max-width: 100%;
   max-height: 92vh;
   object-fit: contain;
+  cursor: zoom-in;
+}
+
+.lb-expand {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(13,12,9,0.6);
+  border: 1px solid var(--line-strong);
+  color: var(--parchment);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.lb-expand:hover, .lb-expand:focus-visible {
+  background: rgba(232,135,92,0.2);
+  color: var(--flame-bright);
+  outline: none;
+  transform: scale(1.06);
 }
 
 .lb-card {
@@ -670,4 +695,58 @@ img { display: block; max-width: 100%; }
   .toc-list a { grid-template-columns: 40px 1fr auto; padding: 18px 4px; }
   .chapter { padding: 70px var(--edge) 30px; }
   .front-matter { padding: 90px var(--edge) 30px; }
+}
+
+/* ============================================================
+   Fullscreen image view
+   ============================================================ */
+.fullscreen-view {
+  position: fixed;
+  inset: 0;
+  z-index: 450;
+  background: #050403;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: lb-in 0.25s cubic-bezier(0.16,1,0.3,1) both;
+}
+.fullscreen-view[hidden] { display: none; }
+
+.fullscreen-view img {
+  max-width: 96vw;
+  max-height: 96vh;
+  object-fit: contain;
+  cursor: zoom-out;
+}
+
+.fs-close {
+  position: absolute;
+  top: 20px; right: 20px;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(13,12,9,0.6);
+  border: 1px solid var(--line-strong);
+  color: var(--parchment);
+  font-size: 24px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s, color 0.2s;
+}
+.fs-close:hover, .fs-close:focus-visible {
+  background: rgba(232,135,92,0.2);
+  color: var(--flame-bright);
+  outline: none;
+}
+
+.fullscreen-view .lb-nav {
+  z-index: 2;
+}
+
+@media (max-width: 560px) {
+  .lb-expand { width: 34px; height: 34px; bottom: 10px; right: 10px; }
+  .fs-close { top: 12px; right: 12px; }
 }
